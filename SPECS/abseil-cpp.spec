@@ -6,7 +6,7 @@
 
 Name:           abseil-cpp
 Version:        20210324.2
-Release:        2%{?dist}
+Release:        2.1%{?dist}
 Summary:        C++ Common Libraries
 
 License:        ASL 2.0
@@ -58,11 +58,7 @@ Development headers for %{name}
 #sed -i 's|GTEST_ALLOW_UNINSTANTIATED_PARAMETERIZED_TEST|//|' absl/container/internal/unordered_map_modifiers_test.h
 
 %build
-%cmake \
-  -DABSL_USE_EXTERNAL_GOOGLETEST:BOOL=ON \
-  -DBUILD_TESTING:BOOL=ON \
-  -DCMAKE_BUILD_TYPE:STRING=None \
-  -DCMAKE_CXX_STANDARD:STRING=17
+%cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo
 %cmake_build
 
 
@@ -90,6 +86,9 @@ Development headers for %{name}
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Thu Jan 13 2022 Joel Capitao <jcapitao@redhat.com> - 20210324.2-2.1
+- Use previous build options
+
 * Wed Jul 21 2021 Fedora Release Engineering <releng@fedoraproject.org> - 20210324.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
